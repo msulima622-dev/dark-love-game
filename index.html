@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>ТЁМНАЯ СТОРОНА ЛЮБВИ 😈🖤</title>
+    <style>
+        body, html {
+            margin: 0; padding: 0; height: 100%; overflow: hidden;
+            font-family: 'Segoe UI', Arial, sans-serif; background-color: #000;
+        }
+        .background-image {
+            position: fixed; left: 0; right: 0; top: 0; bottom: 0; z-index: -1;
+            background-image: url('https://raw.githubusercontent.com/msulima622-dev/dark-love-game/main/IMG_20260403_163725.jpg');
+            background-size: cover; background-position: center;
+            filter: blur(8px) brightness(30%); transform: scale(1.1);
+        }
+        .container {
+            display: flex; flex-direction: column; align-items: center; 
+            height: 100vh; padding: 20px; box-sizing: border-box; text-align: center;
+        }
+        h1 {
+            color: #ff0055; text-shadow: 0 0 15px #ff0055;
+            margin: 10px 0 15px 0; font-size: 1rem; font-weight: bold; text-transform: uppercase;
+        }
+        select { 
+            background: rgba(20, 20, 20, 0.9); color: #fff; padding: 10px; 
+            border: 2px solid #ff0055; border-radius: 12px; width: 70%; max-width: 220px; 
+            font-size: 0.9rem; outline: none; text-align: center; margin-bottom: 20px;
+            -webkit-appearance: none;
+        }
+        /* Основная зона контента, которая занимает свободное место */
+        .content-wrap {
+            flex-grow: 1; display: flex; flex-direction: column; 
+            align-items: center; justify-content: center; width: 100%;
+        }
+        #display-area { 
+            background: rgba(0, 0, 0, 0.6); border: 1px solid rgba(255, 0, 85, 0.5);
+            border-radius: 15px; padding: 15px; min-height: 110px;
+            display: flex; align-items: center; justify-content: center; 
+            width: 95%; max-width: 380px; box-sizing: border-box;
+        }
+        #action { font-size: 1rem; line-height: 1.4; color: #fff; }
+        
+        #timer {
+            font-size: 4rem; font-weight: bold; color: #ff0055; 
+            margin: 20px 0; display: none; text-shadow: 0 0 20px #ff0055;
+        }
+        /* Кнопка теперь прижата к низу через отступ */
+        .btn-wrap { margin-bottom: 20px; width: 100%; }
+        button {
+            background: linear-gradient(45deg, #ff0055, #80002b); border: none; padding: 18px 45px; 
+            color: white; font-size: 1.1rem; font-weight: bold; border-radius: 50px;
+            cursor: pointer; box-shadow: 0 0 15px rgba(255, 0, 85, 0.4); text-transform: uppercase;
+        }
+        button:active { transform: scale(0.95); }
+        button:disabled { opacity: 0.6; }
+    </style>
+</head>
+<body>
+
+<div class="background-image"></div>
+<audio id="endSound" src="https://www.soundjay.com/buttons/beep-07a.mp3" preload="auto"></audio>
+
+<div class="container">
+    <h1>ТЁМНАЯ СТОРОНА ЛЮБВИ 😈🖤</h1>
+
+    <select id="role">
+        <option value="her">Для неё 👰🏻🍑</option>
+        <option value="him">Для него 🤵🏻🍌💦</option>
+    </select>
+
+    <div class="content-wrap">
+        <div id="display-area">
+            <div id="action">Бросай кубик... 🎲</div>
+        </div>
+        <div id="timer">06:00</div>
+    </div>
+
+    <div class="btn-wrap">
+        <button id="mainBtn" onclick="startRolling()">ХОЧУ ГРЯЗЬ 🔞</button>
+    </div>
+</div>
+
+<script>
+    const actionsForHer = [
+        "«Facesitting»: Сядь ему на лицо всем весом. Не вставай,
