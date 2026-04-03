@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>ТЁМНАЯ СТОРОНА ЛЮБВИ 😈🖤</title>
+    <style>
+        body, html {
+            margin: 0; padding: 0; height: 100%; overflow: hidden;
+            font-family: 'Segoe UI', Arial, sans-serif; background-color: #000;
+        }
+        /* Фон с твоим названием файла */
+        .background-image {
+            position: fixed; left: 0; right: 0; top: 0; bottom: 0; z-index: -1;
+            background-image: url('IMG_20260403_163725.jpg');
+            background-size: cover; background-position: center;
+            filter: blur(10px) brightness(30%); transform: scale(1.1);
+        }
+        .container {
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            height: 100vh; padding: 15px; box-sizing: border-box;
+        }
+        h1 {
+            color: #ff0055; text-shadow: 0 0 15px #ff0055;
+            margin-bottom: 20px; font-size: 1.2rem; font-weight: bold; text-transform: uppercase;
+        }
+        /* Компактный селектор */
+        select { 
+            background: rgba(20, 20, 20, 0.9); color: #fff; padding: 10px; 
+            border: 2px solid #ff0055; border-radius: 12px; width: 70%; max-width: 220px; 
+            font-size: 0.95rem; outline: none; text-align: center; margin-bottom: 15px;
+        }
+        /* Компактное окно задания */
+        #display-area { 
+            background: rgba(0, 0, 0, 0.6); border: 1px solid rgba(255, 0, 85, 0.5);
+            border-radius: 15px; padding: 15px; min-height: 100px;
+            display: flex; align-items: center; justify-content: center; 
+            width: 85%; max-width: 380px; box-sizing: border-box;
+        }
+        #action { font-size: 1rem; line-height: 1.4; color: #fff; text-align: center; }
+        
+        /* Крупный таймер по центру */
+        #timer {
+            font-size: 5rem; font-weight: bold; color: #ff0055; 
+            margin: 20px 0; display: none; text-shadow: 0 0 20px #ff0055;
+        }
+        button {
+            background: linear-gradient(45deg, #ff0055, #80002b); border: none; padding: 18px 45px; 
+            color: white; font-size: 1.1rem; font-weight: bold; border-radius: 50px;
+            cursor: pointer; box-shadow: 0 0 20px rgba(255, 0, 85, 0.4); text-transform: uppercase;
+        }
+        button:active { transform: scale(0.95); }
+    </style>
+</head>
+<body>
+
+<div class="background-image"></div>
+<audio id="endSound" src="https://www.soundjay.com/buttons/beep-07a.mp3" preload="auto"></audio>
+
+<div class="container">
+    <h1>ТЁМНАЯ СТОРОНА ЛЮБВИ 😈🖤</h1>
+
+    <select id="role">
+        <option value="her">Для неё 👰🏻🍑</option>
+        <option value="him">Для него 🤵🏻🍌💦</option>
+    </select>
+
+    <div id="display-area">
+        <div id="action">Готовы к игре? Нажми кнопку...</div>
+    </div>
+
+    <div id="timer">06:00</div>
+
+    <button onclick="startDirtyGame()">ХОЧУ ГРЯЗЬ 🔞</button>
+</div>
+
+<script>
+    const actionsForHer = ["«Facesitting»: Сядь ему на лицо всем весом. Не вставай, пока не получишь оргазм сама.", "«Золотой контроль»: Прикажи ему встать на колени в душе и помочись на него.", "«Анальный десерт»: Пока он делает куни, засунь палец ему в анус.", "«Лизание сапог»: Заставь его ползать у твоих ног и вылизывать твою обувь.", "«Слюнявый поводок»: Выпусти слюну прямо ему в рот.", "«Сладкий финал»: Капни мед на его ключицы.", "«Твой ритм»: Положи его руку себе на клитор.", "«Место в ногах»: Партнер раздевает тебя зубами.", "«Ремень»: Свяжи руки партнера ремнем.", "«Лицом в промежность»: Силой прижми лицо партнера.", "«Новая точка»: Во время орала партнеру, введи палец ему в анус.", "«Растяжка»: Используй 2-3 пальца, чтобы растянуть анус партнера.", "«Два пальца»: Введи в анус сразу два пальца.", "«Живой сосуд»: Плюнь партнеру в рот и прикажи держать слюну 1 минуту.", "«Унижение ртом»: Набери полный рот слюны.", "«Метка хозяина»: Оставь засос на лобке партнера.", "«Ледяной шок»: Делай орал с кубиком льда.", "«Ремень-удавка»: Используй ремень как поводок.", "«Королевская наездница»: Сядь сверху, прижми его руки.", "«Вкус хозяйки»: Заставь его вылизывать тебя после дня.", "«Личный унитаз»: Помочись на живот или в рот."];
+    const actionsForHim = ["«Snowballing»: Кончи партнерше в рот, поцелуй её, заставь проглотить.", "«Поводье»: Используй ремень через её рот.", "«Анальный террор»: Растягивай её анус пальцами.", "«Место в ногах»: Партнер раздевает тебя зубами.", "«Захват горла»: Плотно обхвати горло партнерши.", "«Ремень»: Свяжи руки партнерши ремнем.", "«Новая точка»: Во время орала партнерше, введи палец ей в анус.", "«Растяжка»: Используй 2-3 пальца, чтобы растянуть анус.", "«Двойная стимуляция»: Во время вагинального секса держи палец в анусе.", "«Без предупреждения»: В разгар секса резко смени отверстие.", "«Два пальца»: Введи в анус сразу два пальца.", "«Facefuck»: Трахай рот партнерши на всю глубину.", "«Горловой замок»: Трахай рот до слез, а затем кончи в горло.", "«До конца»: Заставь партнершу принять член максимально глубоко.", "«Клеймо»: Кончи ей в рот и заставь показать в зеркале.", "«Сбор семени»: Кончи на живот, заставь её собрать пальцами.", "«Финал на язык»: Заставь высунуть язык и залей полностью.", "«Анальное подчинение»: Медленно растягивай её анус пальцами."];
+
+    let timerInterval;
+
+    function formatTime(seconds) {
+        let mins = Math.floor(seconds / 60);
+        let secs = seconds % 60;
+        return mins.toString().padStart(2, '0') + ':' + secs.toString().padStart(2, '0');
+    }
+
+    function startDirtyGame() {
+        const sound = document.getElementById('endSound');
+        sound.play().then(() => { sound.pause(); sound.currentTime = 0; }).catch(() => {});
+
+        clearInterval(timerInterval);
+        const role = document.getElementById('role').value;
+        const arr = (role === 'her') ? actionsForHer : actionsForHim;
+        document.getElementById('action').innerText = arr[Math.floor(Math.random() * arr.length)];
+        
+        let timeLeft = 360; 
+        const timerEl = document.getElementById('timer');
+        timerEl.style.display = 'block';
+        timerEl.innerText = formatTime(timeLeft);
+
+        timerInterval = setInterval(() => {
+            timeLeft--;
+            timerEl.innerText = formatTime(timeLeft);
+            if (timeLeft <= 0) {
+                clearInterval(timerInterval);
+                timerEl.innerText = "ФИНАЛ!";
+                sound.play();
