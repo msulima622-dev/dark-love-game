@@ -12,6 +12,7 @@
             font-family: 'Segoe UI', Arial, sans-serif;
         }
         
+        /* ФОН - теперь он просто картинка, ни на что не влияет */
         #bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             z-index: 1;
@@ -20,44 +21,38 @@
             background-image: url('IMG_20260403_163725.jpg');
         }
 
-        /* Контейнер для капель — ИГНОРИРУЕТ КЛИКИ */
-        #semen-drops-container {
+        /* КАПЛИ - они живут в своем слое, который прозрачен для кликов */
+        #drop-layer {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none; z-index: 5;
+            z-index: 2; pointer-events: none; /* Пропускает клики сквозь себя */
         }
         
         .drop {
             position: absolute;
-            background: rgba(245, 245, 235, 0.9); /* Густой молочный цвет */
+            background: #fdfdfd; /* Чистый густой белый */
+            width: 12px; height: 40px;
             border-radius: 50% 50% 50% 50% / 20% 20% 80% 80%;
-            box-shadow: inset -2px -4px 6px rgba(0,0,0,0.1), 0 2px 4px rgba(255,255,255,0.4);
+            filter: blur(1px);
+            box-shadow: 0 0 10px rgba(255,255,255,0.4);
             animation: drip linear infinite;
         }
 
         @keyframes drip {
-            0% { transform: translateY(-100px) scaleX(1); }
-            100% { transform: translateY(110vh) scaleX(0.8); }
+            0% { transform: translateY(-100px); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(110vh); opacity: 0.5; }
         }
 
+        /* КОНТЕНТ - ОН ГЛАВНЫЙ */
         .container {
-            position: relative; z-index: 100; /* Выше фона и капель */
+            position: relative; z-index: 10;
             height: 100%; display: flex; flex-direction: column;
             align-items: center; justify-content: center; padding: 20px;
         }
         
-        h1 {
-            color: #ff0055; text-shadow: 0 0 15px #ff0055;
-            font-size: 1.1rem; text-transform: uppercase; margin-bottom: 15px;
-        }
-        
-        select { 
-            background: rgba(30, 0, 10, 0.9); color: #fff; padding: 12px; 
-            border: 2px solid #ff0055; border-radius: 12px; width: 220px;
-            margin-bottom: 20px; position: relative; z-index: 101;
-        }
-        
         #display-area { 
-            background: rgba(0, 0, 0, 0.75); border: 1px solid rgba(255, 0, 85, 0.5);
+            background: rgba(0, 0, 0, 0.8); border: 2px solid #ff0055;
             border-radius: 20px; padding: 20px; width: 100%; max-width: 380px;
             min-height: 160px; display: flex; flex-direction: column;
             align-items: center; justify-content: center;
@@ -66,36 +61,36 @@
         #action { font-size: 1rem; line-height: 1.4; color: #fff; text-align: center; }
         #timer { font-size: 4rem; font-weight: bold; color: #ff0055; display: none; }
         
-        .btn-container { margin-top: 30px; position: relative; z-index: 9999; }
+        .btn-container { margin-top: 40px; }
         
+        /* КНОПКА - БРОНЕБОЙНАЯ */
         button {
             background: linear-gradient(45deg, #ff0055, #80002b); border: none; 
-            padding: 20px 50px; color: white; font-size: 1.2rem; font-weight: bold; 
+            padding: 22px 60px; color: white; font-size: 1.3rem; font-weight: bold; 
             border-radius: 50px; cursor: pointer;
-            box-shadow: 0 0 20px rgba(255, 0, 85, 0.5);
+            box-shadow: 0 0 30px rgba(255, 0, 85, 0.7);
             text-transform: uppercase;
-            pointer-events: auto; /* Железно разрешаем клики */
+            position: relative; z-index: 999;
         }
-        button:active { transform: scale(0.95); }
+        button:active { transform: scale(0.9); }
     </style>
 </head>
 <body>
 
 <div id="bg"></div>
-<div id="semen-drops-container"></div>
-<audio id="endSound" src="https://www.soundjay.com/buttons/beep-07a.mp3" preload="auto"></audio>
+<div id="drop-layer"></div>
 
 <div class="container">
-    <h1>ТЁМНАЯ СТОРОНА ЛЮБВИ 😈🖤</h1>
+    <h1 style="color:#ff0055; text-shadow: 0 0 10px #ff0055; margin-bottom: 20px;">ТЁМНАЯ СТОРОНА ЛЮБВИ 😈</h1>
 
-    <select id="role">
-        <option value="her">Для неё 👰🏻🍑</option>
-        <option value="him">Для него 🤵🏻🍌💦</option>
+    <select id="role" style="background: #1a0000; color: #fff; padding: 10px; border-radius: 10px; margin-bottom: 20px; width: 200px; border: 1px solid #ff0055;">
+        <option value="her">Для неё 👰🏻</option>
+        <option value="him">Для него 🤵🏻</option>
     </select>
 
     <div id="display-area">
         <div id="timer">06:00</div>
-        <div id="action">Бросай кубик... 🎲</div>
+        <div id="action">Нажми кнопку ниже... 🎲</div>
     </div>
 
     <div class="btn-container">
@@ -104,76 +99,26 @@
 </div>
 
 <script>
-    const actionsForHer = [
-        "«Facesitting»: Сядь ему на лицо всем весом. Не вставай, пока не получишь оргазм сама.",
-        "«Золотой контроль»: Прикажи ему встать на колени в душе и помочись на него, глядя в глаза.",
-        "«Анальный десерт»: Пока он делает куни, засунь палец ему в анус. Если отстранится — тяни за волосы.",
-        "«Лизание сапог»: Заставь его ползать у твоих ног и вылизывать твою обувь или ступни.",
-        "«Слюнявый поводок»: Выпусти слюну прямо ему в рот. Прикажи слизать всё без рук.",
-        "«Сладкий финал»: Капни мед на его ключицы. Слизывай медленно, дразня языком.",
-        "«Твой ритм»: Положи его руку себе на клитор и двигай его ладонью так, как нравится тебе.",
-        "«Место в ногах»: Партнер раздевает тебя зубами, стоя на коленях. Руки за спиной.",
-        "«Ремень»: Свяжи руки партнера ремнем над головой и делай с ним всё, что захочешь.",
-        "«Лицом в промежность»: Силой прижми лицо партнера к своим гениталиям.",
-        "«Новая точка»: Во время орала партнеру, введи палец ему в анус с кучей смазки.",
-        "«Растяжка»: Используй 2-3 пальца, чтобы максимально широко растянуть анус партнера.",
-        "«Два пальца»: Введи в анус сразу два пальца и вращай ими.",
-        "«Живой сосуд»: Плюнь партнеру в рот и прикажи держать слюну 1 минуту, не глотая.",
-        "«Унижение ртом»: Набери полный рот слюны и медленно выпусти её прямо в рот партнеру.",
-        "«Метка хозяина»: Оставь сильный засос на лобке или внутренней стороне бедра партнера.",
-        "«Ледяной шок»: Делай орал с кубиком льда во рту.",
-        "«Ремень-удавка»: Используй ремень как поводок, притягивая лицо партнера к гениталиям.",
-        "«Королевская наездница»: Сядь сверху, прижми его руки к кровати. Трахни его сама.",
-        "«Вкус хозяйки»: Заставь его вылизывать тебя после долгого дня.",
-        "«Личный унитаз»: Помочись на живот или в рот партнера."
-    ];
-
-    const actionsForHim = [
-        "«Snowballing»: Кончи партнерше в рот, поцелуй её, а затем заставь её проглотить остатки.",
-        "«Поводье»: Используй ремень через её рот как удила или мотай её волосы на кулак.",
-        "«Анальный террор»: Растягивай её анус пальцами, а затем входи без предупреждения.",
-        "«Место в ногах»: Партнерша раздевает тебя зубами, стоя на коленях.",
-        "«Захват горла»: Плотно обхвати горло партнерши ладонью, фиксируя её взгляд.",
-        "«Ремень»: Свяжи руки партнерши ремнем над головой.",
-        "«Новая точка»: Во время орала партнерше, введи палец ей в анус с кучей смазки.",
-        "«Растяжка»: Используй 2-3 пальца, чтобы максимально широко растянуть анус партнерши.",
-        "«Двойная стимуляция»: Во время вагинального секса держи палец в анусе партнерши.",
-        "«Без предупреждения»: В разгар секса резко смени отверстие и войди в анус.",
-        "«Два пальца»: Введи в анус сразу два пальца и вращай ими.",
-        "«Facefuck»: Трахай рот партнерши на всю глубину.",
-        "«Горловой замок»: Трахай рот до слез, а затем кончи в горло.",
-        "«До конца»: Заставь партнершу принять член максимально глубоко.",
-        "«Клеймо»: Кончи ей в рот и заставь показать это в зеркале.",
-        "«Сбор семени»: Кончи на живот, заставь её собрать это пальцами.",
-        "«Финал на язык»: Заставь партнершу высунуть язык и залей его полностью.",
-        "«Анальное подчинение»: Медленно растягивай её анус пальцами."
-    ];
+    const actionsForHer = ["«Facesitting»: Сядь ему на лицо всем весом. Не вставай, пока не получишь оргазм сама.", "«Золотой контроль»: Прикажи ему встать на колени в душе и помочись на него, глядя в глаза.", "«Анальный десерт»: Пока он делает куни, засунь палец ему в анус. Если отстранится — тяни за волосы.", "«Лизание сапог»: Заставь его ползать у твоих ног и вылизывать твою обувь или ступни.", "«Слюнявый поводок»: Выпусти слюну прямо ему в рот. Прикажи слизать всё без рук.", "«Сладкий финал»: Капни мед на его ключицы. Слизывай медленно, дразня языком.", "«Твой ритм»: Положи его руку себе на клитор и двигай его ладонью так, как нравится тебе.", "«Место в ногах»: Партнер раздевает тебя зубами, стоя на коленях. Руки за спиной.", "«Ремень»: Свяжи руки партнера ремнем над головой и делай с ним всё, что захочешь.", "«Лицом в промежность»: Силой прижми лицо партнера к своим гениталиям.", "«Новая точка»: Во время орала партнеру, введи палец ему в анус с кучей смазки.", "«Растяжка»: Используй 2-3 пальца, чтобы максимально широко растянуть анус партнера.", "«Два пальца»: Введи в анус сразу два пальца и вращай ими.", "«Живой сосуд»: Плюнь партнеру в рот и прикажи держать слюну 1 минуту, не глотая.", "«Унижение ртом»: Набери полный рот слюны и медленно выпусти её прямо в рот партнеру.", "«Метка хозяина»: Оставь сильный засос на лобке или внутренней стороне бедра партнера.", "«Ледяной шок»: Делай орал с кубиком льда во рту.", "«Ремень-удавка»: Используй ремень как поводок, притягивая лицо партнера к гениталиям.", "«Королевская наездница»: Сядь сверху, прижми его руки к кровати. Трахни его сама.", "«Вкус хозяйки»: Заставь его вылизывать тебя после долгого дня.", "«Личный унитаз»: Помочись на живот или в рот партнера."];
+    const actionsForHim = ["«Snowballing»: Кончи партнерше в рот, поцелуй её, а затем заставь её проглотить остатки.", "«Поводье»: Используй ремень через её рот как удила или мотай её волосы на кулак.", "«Анальный террор»: Растягивай её анус пальцами, а затем входи без предупреждения.", "«Место в ногах»: Партнерша раздевает тебя зубами, стоя на коленях.", "«Захват горла»: Плотно обхвати горло партнерши ладонью, фиксируя её взгляд.", "«Ремень»: Свяжи руки партнерши ремнем над головой.", "«Новая точка»: Во время орала партнерше, введи палец ей в анус с кучей смазки.", "«Растяжка»: Используй 2-3 пальца, чтобы максимально широко растянуть анус партнерши.", "«Двойная стимуляция»: Во время вагинального секса держи палец в анусе партнерши.", "«Без предупреждения»: В разгар секса резко смени отверстие и войди в анус.", "«Два пальца»: Введи в анус сразу два пальца и вращай ими.", "«Facefuck»: Трахай рот партнерши на всю глубину.", "«Горловой замок»: Трахай рот до слез, а затем кончи в горло.", "«До конца»: Заставь партнершу принять член максимально глубоко.", "«Клеймо»: Кончи ей в рот и заставь показать это в зеркале.", "«Сбор семени»: Кончи на живот, заставь её собрать это пальцами.", "«Финал на язык»: Заставь партнершу высунуть язык и залей его полностью.", "«Анальное подчинение»: Медленно растягивай её анус пальцами."];
 
     // ГЕНЕРАЦИЯ КАПЕЛЬ
     function createDrops() {
-        const container = document.getElementById('semen-drops-container');
-        for (let i = 0; i < 12; i++) {
+        const container = document.getElementById('drop-layer');
+        for (let i = 0; i < 8; i++) {
             const drop = document.createElement('div');
             drop.className = 'drop';
-            const width = Math.random() * 10 + 10; 
-            drop.style.width = width + 'px';
-            drop.style.height = (width * 2.5) + 'px';
-            drop.style.left = Math.random() * 95 + 'vw';
-            drop.style.animationDuration = (Math.random() * 5 + 7) + 's';
+            drop.style.left = Math.random() * 90 + 'vw';
+            drop.style.width = (Math.random() * 10 + 5) + 'px';
+            drop.style.height = (Math.random() * 30 + 30) + 'px';
+            drop.style.animationDuration = (Math.random() * 6 + 5) + 's';
             drop.style.animationDelay = (Math.random() * 10) + 's';
             container.appendChild(drop);
         }
     }
-
     window.onload = createDrops;
 
     let timerInterval;
-
-    function formatTime(seconds) {
-        let mins = Math.floor(seconds / 60);
-        let secs = seconds % 60;
-        return mins.toString().padStart(2, '0') + ':' + secs.toString().padStart(2, '0');
-    }
 
     function startDirtyGame() {
         const actionEl = document.getElementById('action');
@@ -186,4 +131,29 @@
 
         let rolls = 0;
         let rollEffect = setInterval(() => {
-            actionEl.innerText = arr[Math.floor(Math.random() * arr
+            actionEl.innerText = arr[Math.floor(Math.random() * arr.length)];
+            rolls++;
+            if (rolls > 10) {
+                clearInterval(rollEffect);
+                actionEl.innerText = arr[Math.floor(Math.random() * arr.length)];
+                startTimer();
+            }
+        }, 80);
+    }
+
+    function startTimer() {
+        const timerEl = document.getElementById('timer');
+        let timeLeft = 360; 
+        timerEl.style.display = 'block';
+        timerInterval = setInterval(() => {
+            timeLeft--;
+            let mins = Math.floor(timeLeft / 60);
+            let secs = timeLeft % 60;
+            timerEl.innerText = mins.toString().padStart(2, '0') + ':' + secs.toString().padStart(2, '0');
+            if (timeLeft <= 0) clearInterval(timerInterval);
+        }, 1000);
+    }
+</script>
+
+</body>
+</html>
