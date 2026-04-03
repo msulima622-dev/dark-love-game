@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>ТЁМНАЯ СТОРОНА ЛЮБВИ 😈🖤</title>
+    <style>
+        body, html {
+            margin: 0; padding: 0; height: 100%; overflow: hidden;
+            font-family: 'Segoe UI', Arial, sans-serif; background-color: #000;
+        }
+        .background-image {
+            position: fixed; left: 0; right: 0; top: 0; bottom: 0; z-index: -1;
+            background-image: url('https://raw.githubusercontent.com/msulima622-dev/dark-love-game/main/IMG_20260403_163725.jpg');
+            background-size: cover; background-position: center;
+            filter: blur(8px) brightness(30%); transform: scale(1.1);
+        }
+        .container {
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            height: 100vh; padding: 15px; box-sizing: border-box; text-align: center;
+        }
+        h1 {
+            color: #ff0055; text-shadow: 0 0 15px #ff0055;
+            margin-bottom: 20px; font-size: 1.1rem; font-weight: bold; text-transform: uppercase;
+        }
+        select { 
+            background: rgba(20, 20, 20, 0.9); color: #fff; padding: 10px; 
+            border: 2px solid #ff0055; border-radius: 12px; width: 60%; max-width: 200px; 
+            font-size: 0.9rem; outline: none; text-align: center; margin-bottom: 15px;
+        }
+        #display-area { 
+            background: rgba(0, 0, 0, 0.6); border: 1px solid rgba(255, 0, 85, 0.5);
+            border-radius: 15px; padding: 15px; min-height: 100px;
+            display: flex; align-items: center; justify-content: center; 
+            width: 85%; max-width: 350px; box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+        #action { font-size: 1rem; line-height: 1.3; color: #fff; transition: opacity 0.1s; }
+        
+        #timer {
+            font-size: 4.5rem; font-weight: bold; color: #ff0055; 
+            margin: 15px 0; display: none; text-shadow: 0 0 20px #ff0055;
+            width: 100%; text-align: center;
+        }
+        button {
+            background: linear-gradient(45deg, #ff0055, #80002b); border: none; padding: 16px 40px; 
+            color: white; font-size: 1rem; font-weight: bold; border-radius: 50px;
+            cursor: pointer; box-shadow: 0 0 15px rgba(255, 0, 85, 0.4); text-transform: uppercase;
+        }
+        button:active { transform: scale(0.95); }
+        button:disabled { opacity: 0.5; cursor: not-allowed; }
+    </style>
+</head>
+<body>
+
+<div class="background-image"></div>
+<audio id="endSound" src="https://www.soundjay.com/buttons/beep-07a.mp3" preload="auto"></audio>
+
+<div class="container">
+    <h1>ТЁМНАЯ СТОРОНА ЛЮБВИ 😈🖤</h1>
+
+    <select id="role">
+        <option value="her">Для неё 👰🏻🍑</option>
+        <option value="him">Для него 🤵🏻🍌💦</option>
+    </select>
+
+    <div id="display-area">
+        <div id="action">Нажми, чтобы бросить кубик...</div>
+    </div>
+
+    <div id="timer">06:00</div>
+
+    <button id="mainBtn" onclick="startRolling()">ХОЧУ ГРЯЗЬ 🔞</button>
+</div>
+
+<script>
+    const actionsForHer = ["«Facesitting»: Сядь ему на лицо всем весом.", "«Золотой контроль»: Помочись на него в душе.", "«Анальный десерт»: Засунь палец ему в анус.", "«Лизание сапог»: Заставь его вылизывать обувь.", "«Слюнявый поводок»: Выпусти слюну ему в рот.", "«Сладкий финал»: Капни мед на его ключицы.", "«Твой ритм»: Двигай его ладонью на клиторе.", "«Место в ногах»: Партнер раздевает тебя зубами.", "«Ремень»: Свяжи его руки ремнем.", "«Лицом в промежность»: Силой прижми его лицо.", "«Новая точка»: Введи палец ему в анус.", "«Растяжка»: Растяни его анус пальцами.", "«Два пальца»: Введи в анус сразу два пальца.", "«Живой сосуд»: Плюнь ему в рот (1 минута).", "«Унижение ртом»: Медленно выпусти слюну ему в рот.", "«Метка хозяина»: Оставь сильный засос на лобке.", "«Ледяной шок»: Орал с кубиком льда.", "«Ремень-удавка»: Ремень как поводок.", "«Королевская наездница»: Трахни его сама.", "«Вкус хозяйки»: Вылизать тебя после дня.", "«Личный унитаз»: Помочись на него."];
+    const actionsForHim = ["«Snowballing»: Кончи в рот и заставь проглотить.", "«Поводье»: Мотай её волосы на кулак.", "«Анальный террор»: Войди в анус без предупреждения.", "«Место в ногах»: Она раздевает тебя зубами.", "«Захват горла»: Плотно обхвати её горло.", "«Ремень»: Свяжи её руки ремнем.", "«Новая точка»: Введи палец ей в анус.", "«Растяжка»: Растяни её анус пальцами.", "«Двойная стимуляция»: Палец в анусе во время секса.", "«Без предупреждения»: Резко смени отверстие.", "«Два пальца»: Введи ей в анус два пальца.", "«Facefuck»: Трахай её рот на всю глубину.", "«Горловой замок»: Трахай рот до слез.", "«До конца»: Прими член максимально глубоко.", "«Клеймо»: Показать кончу в зеркале.", "«Сбор семени»: Собрать кончу с живота и облизать.", "«Финал на язык»: Залей ей язык полностью.", "«Анальное подчинение»: Растягивай её анус пальцами."];
+
+    let timerInterval;
+
+    function formatTime(seconds) {
+        let mins = Math.floor(seconds / 60);
+        let secs = seconds % 60;
+        return mins.toString().padStart(2, '0') + ':' + secs.toString().padStart(2, '0');
+    }
+
+    // Функция анимации "перелистывания"
+    function startRolling() {
+        const btn = document.getElementById('mainBtn');
+        const actionEl = document.getElementById('action');
+        const timerEl = document.getElementById('timer');
+        const role = document.getElementById('role').value;
+        const arr = (role === 'her') ? actionsForHer : actionsForHim;
+        
+        btn.disabled = true; // Выключаем кнопку на время анимации
+        timerEl.style.display = 'none';
+        clearInterval(timerInterval);
+
+        let rolls = 0;
+        const maxRolls = 15; // Сколько раз сменится текст
+        
+        const rollEffect = setInterval(() => {
+            actionEl.style.opacity = 0.5;
+            actionEl.innerText = arr[Math.floor(Math.random() * arr.length)];
+            rolls++;
+            
+            setTimeout(() => { actionEl.style.opacity = 1; }, 50);
+
+            if (rolls >= maxRolls) {
+                clearInterval(rollEffect);
+                finishSelection(arr, btn);
+            }
+        }, 100);
+    }
+
+    function finishSelection(arr, btn) {
+        const actionEl = document.getElementById('action');
+        const timerEl = document.getElementById('timer');
+        const sound = document.getElementById('endSound');
+        
+        // Разблокировка звука
+        sound.play().then(() => { sound.pause(); sound.currentTime = 0; }).catch(() => {});
+
+        const finalAction = arr[Math.floor(Math.random() * arr.length)];
+        actionEl.innerText = finalAction;
+        actionEl.style.fontWeight = "bold";
+        
+        let timeLeft = 360; 
+        timerEl.style.display = 'block';
+        timerEl.innerText = formatTime(timeLeft);
+
+        timerInterval = setInterval(() => {
+            timeLeft--;
+            timerEl.innerText = formatTime(timeLeft);
+            if (timeLeft <= 0) {
+                clearInterval(timerInterval);
+                timerEl.innerText = "ФИНАЛ!";
+                sound.play();
+                btn.disabled = false;
+            }
+        }, 1000);
+        
+        btn.disabled = false;
+    }
+</script>
+
+</body>
+</html>
