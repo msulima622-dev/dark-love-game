@@ -11,51 +11,90 @@
             overflow: hidden; background-color: #000;
             font-family: 'Segoe UI', Arial, sans-serif;
         }
+        
+        /* Фон */
         #bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-size: cover; background-position: center;
             filter: blur(3px) brightness(40%); transform: scale(1.1);
             background-image: url('IMG_20260403_163725.jpg');
         }
+
+        /* Эффект стекающих капель */
+        .semen-drops {
+            position: fixed; top: -100px; left: 0; width: 100%; height: 110vh;
+            pointer-events: none; z-index: 5;
+        }
+        
+        .drop {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.7); /* Цвет и прозрачность капли */
+            border-radius: 50%;
+            filter: blur(2px); /* Размытие для реалистичности */
+            animation: drip linear infinite;
+        }
+
+        /* Размер капель */
+        .drop.small { width: 5px; height: 15px; }
+        .drop.medium { width: 8px; height: 20px; }
+        .drop.large { width: 12px; height: 30px; }
+
+        /* Анимация стекания */
+        @keyframes drip {
+            to { transform: translateY(120vh); }
+        }
+
+        /* Контент сверху */
         .container {
-            position: relative; 
+            position: relative; z-index: 10;
             height: 100%; display: flex; flex-direction: column;
             align-items: center; justify-content: center; padding: 20px;
             text-align: center;
         }
+        
         h1 {
             color: #ff0055; text-shadow: 0 0 15px #ff0055;
             font-size: 1.1rem; text-transform: uppercase; margin: 0 0 15px 0;
         }
+        
         select { 
             background: rgba(30, 0, 10, 0.9); color: #fff; padding: 12px; 
             border: 2px solid #ff0055; border-radius: 12px; width: 220px;
-            font-size: 0.9rem; outline: none; margin-bottom: 20px;
+            font-size: 0.9rem; outline: none; text-align: center; margin-bottom: 20px;
         }
+        
         #display-area { 
             background: rgba(0, 0, 0, 0.75); border: 1px solid rgba(255, 0, 85, 0.5);
             border-radius: 20px; padding: 20px; width: 100%; max-width: 380px;
             min-height: 160px; display: flex; flex-direction: column;
             align-items: center; justify-content: center;
         }
+        
         #action { font-size: 1rem; line-height: 1.4; color: #fff; }
+        
         #timer {
             font-size: 4rem; font-weight: bold; color: #ff0055; 
             text-shadow: 0 0 20px #ff0055; margin-top: 10px; display: none;
         }
+        
         .btn-container { margin-top: 30px; }
+        
         button {
             background: linear-gradient(45deg, #ff0055, #80002b); border: none; 
             padding: 20px 50px; color: white; font-size: 1.2rem; font-weight: bold; 
             border-radius: 50px; cursor: pointer; box-shadow: 0 0 20px rgba(255, 0, 85, 0.5);
             text-transform: uppercase;
         }
+        
         button:active { transform: scale(0.95); opacity: 0.8; }
     </style>
 </head>
 <body>
 
 <div id="bg"></div>
+
+<div class="semen-drops" id="semen-drops"></div>
+
 <audio id="endSound" src="https://www.soundjay.com/buttons/beep-07a.mp3" preload="auto"></audio>
 
 <div class="container">
@@ -77,6 +116,33 @@
 </div>
 
 <script>
+    // Создание капель при загрузке
+    window.onload = function() {
+        const dropsContainer = document.getElementById('semen-drops');
+        const numDrops = 15; // Количество капель
+
+        for (let i = 0; i < numDrops; i++) {
+            const drop = document.createElement('div');
+            drop.classList.add('drop');
+
+            // Случайный размер
+            const sizes = ['small', 'medium', 'large'];
+            drop.classList.add(sizes[Math.floor(Math.random() * sizes.length)]);
+
+            // Случайная позиция по горизонтали
+            drop.style.left = Math.random() * 100 + 'vw';
+
+            // Случайная скорость (вязкость)
+            const duration = 5 + Math.random() * 10; // От 5 до 15 секунд
+            drop.style.animationDuration = duration + 's';
+
+            // Случайная задержка начала
+            drop.style.animationDelay = Math.random() * 10 + 's';
+
+            dropsContainer.appendChild(drop);
+        }
+    };
+
     const actionsForHer = [
         "«Facesitting»: Сядь ему на лицо всем весом. Не вставай, пока не получишь оргазм сама.",
         "«Золотой контроль»: Прикажи ему встать на колени в душе и помочись на него, глядя в глаза.",
