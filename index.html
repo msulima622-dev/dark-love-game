@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Тёмная Сторона Любви</title>
+    <style>
+        body { background: #000; color: #fff; font-family: sans-serif; text-align: center; margin: 0; padding: 20px; }
+        .container { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 90vh; }
+        h1 { color: #ff0055; text-shadow: 0 0 10px #ff0055; }
+        #action { font-size: 1.5rem; margin: 20px 0; color: #ffcccc; min-height: 50px; }
+        #timer { font-size: 3rem; color: #ff0055; margin: 10px 0; }
+        button { background: #ff0055; border: none; padding: 15px 30px; color: white; font-size: 1.2rem; border-radius: 50px; cursor: pointer; box-shadow: 0 0 15px #ff0055; }
+        select { background: #222; color: #fff; padding: 10px; border: 1px solid #ff0055; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Тёмная Сторона 😈</h1>
+    <select id="role">
+        <option value="Он">Он</option>
+        <option value="Она">Она</option>
+        <option value="Рандом">Рандом</option>
+    </select>
+    <div id="action">Готовы?</div>
+    <div id="timer">60</div>
+    <button onclick="startGame()">ХОЧУ ГРЯЗЬ 🔞</button>
+</div>
+<script>
+    const actions = ["Сделать массаж", "Поцелуй в шею", "Шлепнуть партнера", "Снять вещь зубами"];
+    let interval;
+    function startGame() {
+        clearInterval(interval);
+        const role = document.getElementById('role').value;
+        const act = actions[Math.floor(Math.random() * actions.length)];
+        document.getElementById('action').innerText = (role === 'Рандом' ? (Math.random() > 0.5 ? 'Он' : 'Она') : role) + ": " + act;
+        let time = 60;
+        interval = setInterval(() => {
+            time--;
+            document.getElementById('timer').innerText = time;
+            if(time<=0) clearInterval(interval);
+        }, 1000);
+    }
+</script>
+</body>
+</html>
