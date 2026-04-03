@@ -3,47 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Тёмная Сторона Любви</title>
+    <title>ТЁМНАЯ СТОРОНА ЛЮБВИ 😈🖤</title>
     <style>
-        body { 
-            background: #000; color: #fff; font-family: 'Segoe UI', Arial, sans-serif; 
-            text-align: center; margin: 0; padding: 20px;
+        body, html {
+            margin: 0; padding: 0; height: 100%; overflow: hidden;
+            font-family: 'Segoe UI', Arial, sans-serif; background-color: #000;
         }
-        .container { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 95vh; }
-        h1 { color: #ff0055; text-shadow: 0 0 15px #ff0055; margin-bottom: 25px; font-size: 1.6rem; letter-spacing: 2px; }
+
+        /* Твоя картинка как фон */
+        .background-image {
+            position: fixed; left: 0; right: 0; top: 0; bottom: 0; z-index: -1;
+            background-image: url('IMG_20260403_163725.jpg');
+            background-size: cover; background-position: center;
+            filter: blur(10px) brightness(35%);
+            -webkit-filter: blur(10px) brightness(35%);
+            transform: scale(1.1);
+        }
+
+        .container {
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            height: 100vh; position: relative; z-index: 1; padding: 20px; box-sizing: border-box;
+        }
+
+        h1 {
+            color: #ff0055; 
+            text-shadow: 0 0 20px #ff0055, 0 0 10px rgba(0,0,0,0.8);
+            margin-bottom: 25px; 
+            font-size: 1.5rem; 
+            letter-spacing: 1px; 
+            font-weight: bold;
+            text-transform: uppercase;
+        }
         
-        .role-selector { margin-bottom: 25px; width: 100%; }
         select { 
-            background: #111; color: #fff; padding: 15px; 
+            background: rgba(20, 20, 20, 0.85); color: #fff; padding: 15px; 
             border: 2px solid #ff0055; border-radius: 15px; 
-            width: 90%; max-width: 320px; font-size: 1.2rem; outline: none;
+            width: 90%; max-width: 350px; font-size: 1.2rem; outline: none;
         }
 
         #display-area { 
-            background: rgba(20, 20, 20, 0.9); border: 1px solid #ff0055; 
-            border-radius: 20px; padding: 30px; margin: 20px 0; min-height: 180px;
-            display: flex; flex-direction: column; justify-content: center; width: 85%;
-            box-shadow: 0 0 20px rgba(255, 0, 85, 0.2);
+            background: rgba(10, 10, 10, 0.8); border: 1px solid #ff0055;
+            border-radius: 20px; padding: 30px; margin: 20px 0; min-height: 200px;
+            display: flex; flex-direction: column; justify-content: center; width: 90%; max-width: 500px;
         }
         
-        #action { font-size: 1.4rem; line-height: 1.5; color: #f0f0f0; font-weight: 500; }
-        #timer { font-size: 4rem; font-weight: bold; color: #ff0055; margin-top: 20px; display: none; text-shadow: 0 0 15px #ff0055; }
+        #action { font-size: 1.4rem; line-height: 1.5; color: #fff; font-weight: 500; }
+        
+        #timer {
+            font-size: 4rem; font-weight: bold; color: #ff0055; margin-top: 25px;
+            display: none; text-shadow: 0 0 15px #ff0055;
+        }
 
         button {
-            background: linear-gradient(45deg, #ff0055, #80002b); border: none; padding: 22px 45px; 
+            background: linear-gradient(45deg, #ff0055, #80002b); border: none; padding: 22px 50px; 
             color: white; font-size: 1.4rem; font-weight: bold; border-radius: 50px;
-            cursor: pointer; box-shadow: 0 0 25px rgba(255, 0, 85, 0.4); transition: 0.3s;
-            text-transform: uppercase; margin-top: 10px;
+            cursor: pointer; box-shadow: 0 0 25px rgba(255, 0, 85, 0.5); text-transform: uppercase;
         }
-        button:active { transform: scale(0.9); }
+        button:active { transform: scale(0.93); }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>ТЁМНАЯ СТОРОНА 😈</h1>
+<div class="background-image"></div>
 
-    <div class="role-selector">
+<div class="container">
+    <h1>ТЁМНАЯ СТОРОНА ЛЮБВИ 😈🖤</h1>
+
+    <div style="margin-bottom: 25px; width: 100%;">
         <select id="role">
             <option value="her">Для неё 👰🏻🍑</option>
             <option value="him">Для него 🤵🏻🍌💦</option>
@@ -51,7 +77,7 @@
     </div>
 
     <div id="display-area">
-        <div id="action">Выбери роль и нажми кнопку...</div>
+        <div id="action">Готовы к игре?</div>
         <div id="timer">05:00</div>
     </div>
 
@@ -66,76 +92,32 @@
         "«Лизание сапог»: Заставь его ползать у твоих ног и вылизывать твою обувь или ступни, пока ты стоишь над ним.",
         "«Слюнявый поводок»: Выпусти слюну прямо ему в рот. Прикажи слизать всё без рук.",
         "«Сладкий финал»: Капни мед на его ключицы. Слизывай медленно, дразня языком.",
-        "«Твой ритм»: Положи его руку себе на клитор и двигай его ладонью так, как нравится тебе. За попытку сменить темп — укуси.",
+        "«Твой ритм»: Положи его руку себе на клитор и двигай его ладонью так, как нравится тебе.",
         "«Место в ногах»: Партнер раздевает тебя зубами, стоя на коленях. Руки за спиной.",
         "«Ремень»: Свяжи руки партнера ремнем над головой и делай с ним всё, что захочешь.",
-        "«Лицом в промежность»: Силой прижми лицо партнера к своим гениталиям. Пусть вдыхает запах и вылизывает всё до капли.",
+        "«Лицом в промежность»: Силой прижми лицо партнера к своим гениталиям. Пусть вдыхает запах.",
         "«Новая точка»: Во время орала партнеру, введи палец ему в анус с кучей смазки.",
-        "«Растяжка»: Используй 2-3 пальца, чтобы максимально широко растянуть анус партнера. Комментируй то, что видишь.",
-        "«Два пальца»: Введи в анус сразу два пальца и вращай ими, пока партнер занят твоим органом.",
+        "«Растяжка»: Используй 2-3 пальца, чтобы максимально широко растянуть анус партнера.",
+        "«Два пальца»: Введи в анус сразу два пальца и вращай ими.",
         "«Живой сосуд»: Плюнь партнеру в рот и прикажи держать слюну 1 минуту, не глотая.",
         "«Унижение ртом»: Набери полный рот слюны и медленно выпусти её прямо в рот партнеру.",
         "«Метка хозяина»: Оставь сильный засос на лобке или внутренней стороне бедра партнера.",
         "«Ледяной шок»: Делай орал с кубиком льда во рту, а затем резко смени на горячее дыхание.",
         "«Ремень-удавка»: Используй ремень как поводок, притягивая лицо партнера к гениталиям.",
-        "«Королевская наездница»: Сядь сверху, прижми его руки к кровати. Трахни его сама, игнорируя его темп.",
-        "«Вкус хозяйки»: Заставь его вылизывать тебя после долгого дня, не давая вдохнуть свежий воздух.",
+        "«Королевская наездница»: Сядь сверху, прижми его руки к кровати. Трахни его сама.",
+        "«Вкус хозяйки»: Заставь его вылизывать тебя после долгого дня.",
         "«Личный унитаз»: Помочись на живот или в рот партнера (по согласию)."
     ];
 
     const actionsForHim = [
         "«Snowballing»: Кончи партнерше в рот, поцелуй её, а затем заставь её проглотить остатки.",
-        "«Поводье»: Он использует ремень через твой рот или мотает твои волосы на кулак, управляя твоей головой.",
-        "«Анальный террор»: Растягивай её анус пальцами, комментируя то, что видишь, а затем входи без предупреждения.",
+        "«Поводье»: Он использует ремень через твой рот или мотает твои волосы на кулак.",
+        "«Анальный террор»: Растягивай её анус пальцами, а затем входи без предупреждения.",
         "«Место в ногах»: Партнер раздевает тебя зубами, стоя на коленях. Руки за спиной.",
-        "«Захват горла»: Плотно обхвати горло партнера ладонью, фиксируя его взгляд на себе.",
+        "«Захват горла»: Плотно обхвати горло партнера ладонью, фиксируя его взгляд.",
         "«Ремень»: Свяжи руки партнера ремнем над головой и делай с ним всё, что захочешь.",
         "«Новая точка»: Во время орала партнеру, введи палец ему в анус с кучей смазки.",
-        "«Растяжка»: Используй 2-3 пальца, чтобы максимально широко растянуть анус партнера. Комментируй то, что видишь.",
-        "«Двойная стимуляция»: Во время вагинального секса держи палец в анусе, двигая им в такт.",
+        "«Растяжка»: Используй 2-3 пальца, чтобы максимально широко растянуть анус партнера.",
+        "«Двойная стимуляция»: Во время вагинального секса держи палец в анусе.",
         "«Без предупреждения»: В разгар секса резко смени отверстие и войди в анус без прелюдий.",
-        "«Два пальца»: Введи в анус сразу два пальца и вращай ими, пока партнер занят твоим органом.",
-        "«Facefuck»: Трахай рот партнерши на всю глубину, задавая темп рукой на затылке.",
-        "«Горловой замок»: Трахай рот до слез, а затем кончи в горло и зажми ей рот ладонью.",
-        "«До конца»: Заставь партнершу принять член максимально глубоко и удерживай её голову так несколько секунд.",
-        "«Клеймо»: Кончи ей в рот и заставь показать это в зеркале, прежде чем она проглотит.",
-        "«Сбор семени»: Кончи на живот, заставь её собрать это пальцами и облизать их.",
-        "«Финал на язык»: Заставь партнера высунуть язык и залей его полностью, пока не начнет капать.",
-        "«Анальное подчинение»: Он медленно растягивает твой анус пальцами со смазкой, заставляя тебя смотреть в зеркало на этот процесс и описывать свои ощущения."
-    ];
-
-    let timerInterval;
-
-    function formatTime(seconds) {
-        let mins = Math.floor(seconds / 60);
-        let secs = seconds % 60;
-        return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-    }
-
-    function startDirtyGame() {
-        clearInterval(timerInterval);
-        
-        let role = document.getElementById('role').value;
-        let selectedArray = (role === 'her') ? actionsForHer : actionsForHim;
-        const randomAction = selectedArray[Math.floor(Math.random() * selectedArray.length)];
-        
-        document.getElementById('action').innerText = randomAction;
-        
-        let timeLeft = 300; // 5 минут в секундах
-        const timerEl = document.getElementById('timer');
-        timerEl.style.display = 'block';
-        timerEl.innerText = formatTime(timeLeft);
-
-        timerInterval = setInterval(() => {
-            timeLeft--;
-            timerEl.innerText = formatTime(timeLeft);
-            if (timeLeft <= 0) {
-                clearInterval(timerInterval);
-                timerEl.innerText = "ВРЕМЯ ВЫШЛО!";
-            }
-        }, 1000);
-    }
-</script>
-
-</body>
-</html>
+        "«Два пальца»: Введи в анус сразу два пальца
